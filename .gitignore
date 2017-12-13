@@ -1,0 +1,9 @@
+.idea/*
+.git/*
+vendor/*
+tmp/*
+app.log
+public/attachments/*
+public/assets/img/*
+config.php
+build/*
