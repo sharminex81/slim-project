@@ -30,7 +30,7 @@ return [
                 'driver' => 'mysql',
                 'host' => 'localhost',
                 'database' => '',
-                'username' => '',
+                'username' => 'e',
                 'password' => '',
                 'charset' => 'Utf8',
                 'collation' => 'utf8_general_ci',
