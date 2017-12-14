@@ -83,4 +83,12 @@ class AppController
     {
         return $this->container->get('flash');
     }
+
+    /**
+     * @return Email;
+     */
+    public function getEmail()
+    {
+        return $this->container->get('email');
+    }
 }

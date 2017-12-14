@@ -64,12 +64,16 @@ $container['flash'] = function () {
     return new \Slim\Flash\Messages();
 };
 
-
 /**
- * @return \Slim\Flash\Messages
+ * @param \Psr\Container\ContainerInterface $container
+ * @return \Sharminshanta\Web\Accounts\Controller\Email
+ * @throws \Psr\Container\ContainerExceptionInterface
+ * @throws \Psr\Container\NotFoundExceptionInterface
  */
-$container['rana'] = function () {
-    return new \Slim\Flash\Messages();
+$container['email'] = function (\Psr\Container\ContainerInterface $container) {
+    $config = $container->get('config');
+    $logger = $container->get('logger');
+    return new \Sharminshanta\Web\Accounts\Controller\Email($config, $logger);
 };
 
 /**

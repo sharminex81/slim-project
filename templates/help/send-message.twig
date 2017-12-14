@@ -1,0 +1,30 @@
+<form action="/send-a-message" method="POST">
+    <div class="row">
+        <div class="form-group col-12 col-md-12">
+            <input class="form-control" name="name" type="text" placeholder="Your Name" required="required">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <input class="form-control" name="email_address" type="text" placeholder="Email Address" required="required">
+        </div>
+
+        <div class="form-group col-12 col-md-6">
+            <input class="form-control" name="phone" type="text" placeholder="Phone" required="required">
+        </div>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="subject" type="text" placeholder="Subject" required="required">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" name="message" placeholder="Your Message" rows="3" required="required"></textarea>
+    </div>
+
+    <div class="g-recaptcha"
+         data-sitekey="{{ viewconfig.config.gcaptcha.site_key }}">
+    </div>
+
+    <br/>
+
+    <button class="btn btn-primary" type="submit">Send your Message</button>
+</form>
