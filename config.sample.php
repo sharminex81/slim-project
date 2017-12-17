@@ -25,6 +25,10 @@ return [
             'level' => \Monolog\Logger::DEBUG,
             'monolog_handlers' => ['php://stdout', 'file']
         ],
+        'directory' => [
+            'public_assets' => ROOT_DIR . DIRECTORY_SEPARATOR . 'public/assets',
+            'profile_pictures' => ROOT_DIR . DIRECTORY_SEPARATOR . 'public/assets/img/profiles',
+        ],
         'databases' => [
             'default' => [
                 'driver' => 'mysql',
@@ -37,6 +41,37 @@ return [
                 'prefix' => '',
                 'unix_socket' => null
             ],
+        ],
+        'admin_notification_email' => [
+            'recipients' => [
+                [
+                    'name' => 'SHARMIN SHANTA',
+                    'email_address' => 'sharmin@previewtechs.com'
+                ],
+                /*[
+                    'name' => 'PREVIEW TECHNOLOGIES LIMITED',
+                    'email_address' => 'info@previewtechs.com'
+                ]*/
+            ],
+            'cc' => [
+                [
+                    'name' => 'Sharmin Shanta',
+                    'email_address' => 'shantaex81@gmail.com'
+                ],
+                [
+                    'name' => 'Mim Ety Shanta',
+                    'email_address' => 'mimetyshanta@gmail.com'
+                ]
+            ],
+        ],
+        'portal_admin' => [
+            'sharmin@previewtechs.com'
+        ],
+        'send_email_api_endpint' => 'https://www.previewtechsapis.com/internal_email/v1/messages/queue?key=291b6bbc764382def82d64ff6b8225d4',
+        'tinyMCE_api_key' => '9i61oreyc2qfdq8l2m5omf0w5a3omy4n38kixyn326oks43i',
+        'gcaptcha' => [
+            'backend_key' => '6LcWwTIUAAAAAOPmbptmwG6v_CDs2nMuqYF2vOtt',
+            'site_key' => '6LcWwTIUAAAAAAVZ5bqEpkFlAmWskNQEopvJjJrI'
         ],
     ]
 ];
