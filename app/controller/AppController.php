@@ -2,6 +2,7 @@
 
 namespace Sharminshanta\Web\Accounts\Controller;
 
+use Noodlehaus\Config;
 use Psr\Container\ContainerInterface;
 use Monolog\Logger;
 
@@ -40,6 +41,11 @@ class AppController
      * @var
      */
     public $homeUrl;
+
+    /**
+     * @var
+     */
+    public $config;
 
     /**
      * AppController constructor.
@@ -90,5 +96,16 @@ class AppController
     public function getEmail()
     {
         return $this->container->get('email');
+    }
+
+    /**
+     * @return mixed
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @return config info
+     */
+    public function getConfig()
+    {
+        return $this->container->get('config');
     }
 }

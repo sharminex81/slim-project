@@ -78,33 +78,28 @@ $container['email'] = function (\Psr\Container\ContainerInterface $container) {
 
 /**
  * @param \Psr\Container\ContainerInterface $container
- * @throws \Psr\Container\ContainerExceptionInterface
- * @throws \Psr\Container\NotFoundExceptionInterface
+ *
+ * @return Closure
  */
-$container['errorHandler'] = function (\Psr\Container\ContainerInterface $container) {
-    $logger = $container->get('logger');
-    $container['errorHandler'] = function ($container) use ($logger) {
-        return function (Request $request, Response $response, Exception $exception) use (
-            $container,
-            $logger
-        ) {
-            $logger = $container->get('logger');
-            $logger->error($exception->getMessage(), [$request->getQueryParams()]);
-            $logger->debug($exception->getTraceAsString(), [$request->getQueryParams()]);
-            return $container['view']->render($response->withStatus(500), '404.twig');
-        };
+$container['notFoundHandler'] = function (\Psr\Container\ContainerInterface $container) {
+    return function (\Slim\Http\Request $request, \Slim\Http\Response $response) use ($container) {
+        return $response->withStatus(404)->withHeader('Content-Type', 'text/html')->write("Not found");
     };
 };
 
 /**
- * @param $c
- * @return Closure
+ * @param \Psr\Container\ContainerInterface $container
+ *
+ * @return \Psr\Http\Message\ResponseInterface|Closure
  */
-$container['notFoundHandler'] = function ($c) {
-    return function (Request $request, Response $response) use ($c) {
-        $logger = $c->get('logger');
-        $logger->info('Not Found', ['requested_uri' => $request->getUri()]);
-        return $c['view']->render($response->withStatus(404), '404.twig');
+$container['errorHandler'] = function (\Psr\Container\ContainerInterface $container) {
+    return function (\Slim\Http\Request $request, \Slim\Http\Response $response, Exception $exception
+    ) use ($container) {
+        /** @var $logger Logger * */
+        $logger = $container->get('logger');
+        $logger->error($exception->getMessage(), ['trace' => $exception->getTraceAsString()]);
+        return $response->withStatus(500)->withHeader('Content-Type',
+            'text/html')->write("Internal server error");
     };
 };
 
