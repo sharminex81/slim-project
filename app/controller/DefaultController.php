@@ -48,8 +48,8 @@ class DefaultController extends AppController
         }
 
         $defaultModel = new DefaultModel();
-        $updateUser = $defaultModel->updateUser(14)->update($postData);
-        //$createUser = $defaultModel->createNew($postData);
+        //$updateUser = $defaultModel->updateUser(2)->update($postData);
+        $createUser = $defaultModel->createNew($postData);
         $this->getLogger()->info('User has been created', ['postdata' => $postData]);
         $this->getFlash()->addMessage('success', 'User has been created');
         return $response->withStatus(302)->withHeader('Location', '/');
