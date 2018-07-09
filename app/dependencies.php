@@ -65,6 +65,15 @@ $container['flash'] = function () {
 };
 
 /**
+ * @param Container $container
+ * @return \Sharminshanta\Web\Accounts\Model\ModelLoader
+ */
+$container['model'] = function (Container $container) {
+    $models = new \Sharminshanta\Web\Accounts\Model\ModelLoader();
+    return $models;
+};
+
+/**
  * @param \Psr\Container\ContainerInterface $container
  * @return \Sharminshanta\Web\Accounts\Controller\Email
  * @throws \Psr\Container\ContainerExceptionInterface
