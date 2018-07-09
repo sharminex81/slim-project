@@ -5,6 +5,7 @@ namespace Sharminshanta\Web\Accounts\Controller;
 use Noodlehaus\Config;
 use Psr\Container\ContainerInterface;
 use Monolog\Logger;
+use Sharminshanta\Web\Accounts\Model\ModelLoader;
 
 /**
  * Class AppController
@@ -60,6 +61,8 @@ class AppController
 
     /**
      * @return Logger
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function getLogger()
     {
@@ -68,6 +71,8 @@ class AppController
 
     /**
      * @return \Slim\Views\Twig
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function getView()
     {
@@ -75,7 +80,9 @@ class AppController
     }
 
     /**
-     * @return array
+     * @return mixed
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function getSettings()
     {
@@ -84,6 +91,8 @@ class AppController
 
     /**
      * @return \Slim\Flash\Messages
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function getFlash()
     {
@@ -91,7 +100,9 @@ class AppController
     }
 
     /**
-     * @return Email;
+     * @return Email
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function getEmail()
     {
@@ -99,7 +110,7 @@ class AppController
     }
 
     /**
-     * @return mixed
+     * @return Config
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @return config info
@@ -107,5 +118,15 @@ class AppController
     public function getConfig()
     {
         return $this->container->get('config');
+    }
+
+    /**
+     * @return ModelLoader
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function getModel()
+    {
+        return $this->container->get('model');
     }
 }
