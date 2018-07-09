@@ -45,8 +45,8 @@ return [
         'admin_notification_email' => [
             'recipients' => [
                 [
-                    'name' => 'SHARMIN SHANTA',
-                    'email_address' => 'sharmin@previewtechs.com'
+                    'name' => 'Name',
+                    'email_address' => 'recipient@gmail.com'
                 ],
                 /*[
                     'name' => 'PREVIEW TECHNOLOGIES LIMITED',
@@ -55,23 +55,23 @@ return [
             ],
             'cc' => [
                 [
-                    'name' => 'Sharmin Shanta',
-                    'email_address' => 'shantaex81@gmail.com'
+                    'name' => 'Name',
+                    'email_address' => 'example@gmail.com'
                 ],
                 [
-                    'name' => 'Mim Ety Shanta',
-                    'email_address' => 'mimetyshanta@gmail.com'
+                    'name' => 'Name',
+                    'email_address' => 'example1@gmail.com'
                 ]
             ],
         ],
         'portal_admin' => [
-            'sharmin@previewtechs.com'
+            'example@gmail.com'
         ],
-        'send_email_api_endpint' => 'https://www.previewtechsapis.com/internal_email/v1/messages/queue?key=291b6bbc764382def82d64ff6b8225d4',
-        'tinyMCE_api_key' => '9i61oreyc2qfdq8l2m5omf0w5a3omy4n38kixyn326oks43i',
+        'send_email_api_endpint' => 'Your Email Endint',
+        'tinyMCE_api_key' => 'tinyMCE_api_key',
         'gcaptcha' => [
-            'backend_key' => '6LcWwTIUAAAAAOPmbptmwG6v_CDs2nMuqYF2vOtt',
-            'site_key' => '6LcWwTIUAAAAAAVZ5bqEpkFlAmWskNQEopvJjJrI'
+            'backend_key' => 'Backend Key',
+            'site_key' => 'Site Key'
         ],
     ]
 ];
