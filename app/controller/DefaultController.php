@@ -7,6 +7,8 @@ use Sharminshanta\Web\Accounts\Model\DefaultModel;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Illuminate\Database\Query\Builder;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class DefaultController
@@ -15,16 +17,18 @@ use Illuminate\Database\Query\Builder;
 class DefaultController extends AppController
 {
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
+     * @param Request $request
+     * @param Response $response
+     * @param $args
      * @return ResponseInterface
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function testView(ServerRequestInterface $request, ResponseInterface $response)
+    public function testView(Request $request, Response $response, $args)
     {
         $message = $this->getFlash()->getMessages();
 
-        $defaultModel = new DefaultModel();
-        $users = $defaultModel->getAll();
+        $users = $this->getModel()->getUsers()->getAll();
         return $this->getView()->render($response, 'layouts/test.twig', [
             'message' => $message,
             'users' => $users
@@ -32,12 +36,13 @@ class DefaultController extends AppController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
+     * @param Request $request
+     * @param Response $response
      * @return static
-     * @var Builder
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function testPost(ServerRequestInterface $request, ResponseInterface $response)
+    public function testPost(Request $request, Response $response)
     {
         $postData = $request->getParsedBody();
 
@@ -47,9 +52,8 @@ class DefaultController extends AppController
             return $response->withStatus(302)->withHeader('Location', $_SERVER['HTTP_REFERER']);
         }
 
-        $defaultModel = new DefaultModel();
-        //$updateUser = $defaultModel->updateUser(2)->update($postData);
-        $createUser = $defaultModel->createNew($postData);
+        //$updateUser = $this->getModel()->getUsers()->updateUser(2)->update($postData);
+        $createUser = $this->getModel()->getUsers()->createNew($postData);
         $this->getLogger()->info('User has been created', ['postdata' => $postData]);
         $this->getFlash()->addMessage('success', 'User has been created');
         return $response->withStatus(302)->withHeader('Location', '/');
